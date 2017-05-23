@@ -10,7 +10,7 @@ with Browser("phantomjs") as browser:
     print 'foo2'
 
     # Visit URL
-    url = "https://www.google.rs/search?q=bitcoin&tbm=nws&cad=h"
+    url = "https://www.google.com/search?q=bitcoin&tbm=nws&cad=h"
     browser.visit(url)
     print 'loaded url'
     sleep(2)
@@ -18,6 +18,8 @@ with Browser("phantomjs") as browser:
 
     titles = browser.find_by_xpath('//*[@class="l _PMs"]')
     print titles
+    
+    print browser.find_by_xpath('//h1').text
 
     times = browser.find_by_xpath('//*[@class="f nsa _QHs"]')
     urls = browser.find_by_xpath('//*[@class="top _xGs _SHs"]')
