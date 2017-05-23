@@ -3,9 +3,11 @@ from time import sleep
 from splinter import Browser
 from selenium import webdriver
 
+print 'foo'
 
 with Browser("phantomjs") as browser:
     browser.driver.set_window_size(1280, 1024)
+    print 'foo2'
 
     # Visit URL
     url = "https://www.google.rs/search?q=bitcoin&tbm=nws&cad=h"
