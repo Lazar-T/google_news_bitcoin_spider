@@ -4,15 +4,19 @@ from splinter import Browser
 from selenium import webdriver
 
 
-with Browser('phantomjs') as browser:
+with Browser("phantomjs") as browser:
     browser.driver.set_window_size(1280, 1024)
 
     # Visit URL
     url = "https://www.google.rs/search?q=bitcoin&tbm=nws&cad=h"
     browser.visit(url)
+    print 'loaded url'.
     sleep(2)
+    print 'in sleep function.'
 
     titles = browser.find_by_xpath('//*[@class="l _PMs"]')
+    print titles
+
     times = browser.find_by_xpath('//*[@class="f nsa _QHs"]')
     urls = browser.find_by_xpath('//*[@class="top _xGs _SHs"]')
     for title, time, url in zip(titles, times, urls):
