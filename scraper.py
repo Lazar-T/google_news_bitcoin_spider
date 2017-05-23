@@ -1,24 +1,28 @@
-# This is a template for a Python scraper on morph.io (https://morph.io)
-# including some code snippets below that you should find helpful
+import scraperwiki
+from time import sleep
+from splinter import Browser
+from selenium import webdriver
 
-# import scraperwiki
-# import lxml.html
-#
-# # Read in a page
-# html = scraperwiki.scrape("http://foo.com")
-#
-# # Find something on the page using css selectors
-# root = lxml.html.fromstring(html)
-# root.cssselect("div[align='left']")
-#
-# # Write out to the sqlite database using scraperwiki library
-# scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "susan", "occupation": "software developer"})
-#
-# # An arbitrary query against the database
-# scraperwiki.sql.select("* from data where 'name'='peter'")
 
-# You don't have to do things with the ScraperWiki and lxml libraries.
-# You can use whatever libraries you want: https://morph.io/documentation/python
-# All that matters is that your final data is written to an SQLite database
-# called "data.sqlite" in the current working directory which has at least a table
-# called "data".
+with Browser('phantomjs') as browser:
+    browser.driver.set_window_size(1280, 1024)
+
+    # Visit URL
+    url = "https://www.google.rs/search?q=bitcoin&tbm=nws&cad=h"
+    browser.visit(url)
+    sleep(2)
+
+    titles = browser.find_by_xpath('//*[@class="l _PMs"]')
+    times = browser.find_by_xpath('//*[@class="f nsa _QHs"]')
+    urls = browser.find_by_xpath('//*[@class="top _xGs _SHs"]')
+    for title, time, url in zip(titles, times, urls):
+        print '-' * 60
+        print title.text
+        print time.text
+        print url['href']
+        print '-' * 60
+        print '\n'
+
+        scraperwiki.sqlite.save(data={'title': title.text,
+                                      'time': time.text,
+                                      'url': url['href']})
