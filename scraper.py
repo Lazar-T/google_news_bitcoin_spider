@@ -12,7 +12,7 @@ with Browser("phantomjs") as browser:
     # Visit URL
     url = "https://www.google.rs/search?q=bitcoin&tbm=nws&cad=h"
     browser.visit(url)
-    print 'loaded url'.
+    print 'loaded url'
     sleep(2)
     print 'in sleep function.'
 
