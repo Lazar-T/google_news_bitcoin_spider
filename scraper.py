@@ -19,7 +19,7 @@ with Browser("phantomjs") as browser:
     titles = browser.find_by_xpath('//*[@class="l _PMs"]')
     print titles
     
-    print browser.find_by_xpath('//h1').text
+    print browser.title
 
     times = browser.find_by_xpath('//*[@class="f nsa _QHs"]')
     urls = browser.find_by_xpath('//*[@class="top _xGs _SHs"]')
